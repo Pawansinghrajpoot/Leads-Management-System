@@ -4,9 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>Leads</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #171718;
+          margin: 0;
+          padding: 0;
+      }
+      .navbar {
+          background-color: #343a40;
+          padding: 10px;
+          text-align: center;
+      }
+      .navbar-brand {
+          color: white;
+          font-size: 24px;
+          font-weight: bold;
+          text-decoration: none;
+          margin-left: 700px;
+      }
+      .container {
+          margin-top: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .form-container {
+          background-color: #636e8b;
+          padding: 40px;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          max-width: 500px;
+          width: 100%;
+          margin-left: 35%;
+          margin-top: 10px;
+      }
+      h1 {
+          color: #333;
+          text-align: center;
+          margin-bottom: 30px;
+          font-size: 24px;
+      }
+      .form-group {
+          margin-bottom: 20px;
+      }
+      label {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 8px;
+          color: #080909;
+      }
+      input, select {
+          width: 100%;
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          transition: border-color 0.3s ease;
+      }
+      input:focus, select:focus {
+          border-color: #007bff;
+          outline: none;
+      }
+      button {
+          width: 100%;
+          padding: 12px;
+          background-color: #007bff;
+          border: none;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      button:hover {
+          background-color: #0056b3;
+      }
+      .alert {
+          padding: 10px;
+          background-color: #28a745;
+          color: white;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          text-align: center;
+      }
+      input[type="checkbox"] {
+            transform: scale(5); /* Increase the size of the checkbox */
+            margin-right: 10px;
+            height: 30px;
+            width: 30px;
+        }
+  </style>
 </head>
 <body>
   {% if success_message %}
@@ -28,40 +119,92 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'leads_data' %}">Leads data</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'excel_data' %}">View Excel Data</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-  <form id="leadForm" class="row g-3" method="POST" action="{% url 'index' %}">
-    {% csrf_token %}
-    <div class="col-md-4">
-      <label for="validname" class="form-label">Full name</label>
-      <input type="text" class="form-control" id="validname" name="full_name" required>
-    </div>
-    <div class="col-md-4">
-      <label for="validemail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="validemail" name="email" required>
-    </div>
-    <div class="col-md-4">
-      <label for="validmobile" class="form-label">Mob No:</label>
-      <div class="input-group">
-        <span class="input-group-text" id="inputGroupPrepend2">+91</span>
-        <input type="text" class="form-control" id="validmobile" name="mobile_number" aria-describedby="inputGroupPrepend2" pattern="\d{10}" title="Enter a 10-digit phone number" required>
+  
+  <div class="form-container">
+    <form id="leadForm" method="POST" action="{% url 'index' %}">
+      {% csrf_token %}
+      <div class="row mb-3">
+        <label for="name" class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationDefault03" class="form-label">Through</label>
-      <input type="text" class="form-control" id="validationDefault03" name="through" required>
-    </div>
-    <div class="col-md-4">
-      <label for="validationDefault05" class="form-label">Comments</label>
-      <input type="text" class="form-control" id="validationDefault05" name="comments" required>
-    </div>
-    
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
-  </form>
+      
+      <div class="row mb-3">
+        <label for="number" class="col-sm-3 col-form-label">Number</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="number" name="number" pattern="\d{10}" title="Enter a 10-digit phone number" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="database" class="col-sm-3 col-form-label">Database</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="database" name="database" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="demo_lecture_attended" class="col-sm-3 col-form-label">Demo Lecture Attended?</label>
+        <div class="col-sm-9">
+          <input type="checkbox" id="demo_lecture_attended" name="demo_lecture_attended">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="interested_in" class="col-sm-3 col-form-label">Interested In</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="interested_in" name="interested_in" required>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="last_whatsapp_blast" class="col-sm-3 col-form-label">Last Whatsapp Blast</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" id="last_whatsapp_blast" name="last_whatsapp_blast">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="response_to_whatsapp_blast" class="col-sm-3 col-form-label">Response to Whatsapp Blast</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="response_to_whatsapp_blast" name="response_to_whatsapp_blast">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="last_call_date" class="col-sm-3 col-form-label">Last Call Date</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" id="last_call_date" name="last_call_date">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="followup_of_last_call" class="col-sm-3 col-form-label">Followup of Last Call</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" id="followup_of_last_call" name="followup_of_last_call">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="close_reason" class="col-sm-3 col-form-label">Close Reason</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="close_reason" name="close_reason">
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>

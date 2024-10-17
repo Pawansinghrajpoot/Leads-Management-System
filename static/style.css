@@ -1,58 +1,130 @@
+/* Form Container Styling */
+.g-3 {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem 2rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    max-width: 600px; /* Reduced form width */
+    border: 2px solid #007bff; /* Border for visibility */
+}
+
+/* Form Label Styling */
 .form-label {
-    font-size: 1.5rem;
-    margin-left: 2rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    text-align: right;
-    flex: 1;
-    margin-right: 2rem;
+    text-align: left;
+    margin-right: 1rem;
+    color: #007bff; /* Vibrant blue for labels */
+    background-color: #e7f3ff; /* Highlighted background */
+    padding: 0.25rem 0.5rem; /* Padding for more emphasis */
+    border-radius: 4px;
 }
 
+/* Input Fields Styling */
+.form-control, 
 .input-group-text {
-    font-size: 1.5rem;
-}
-
-.btn-primary {
-    font-size: 1.2rem;
-    padding: 0.5rem 1.5rem;
-    
-}
-
-.form-control {
     font-size: 1rem;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid #007bff; /* Border to make input boxes more visible */
+    background-color: #f1faff; /* Light background for input fields */
+    color: #333;
+    transition: all 0.3s ease;
 }
 
+/* Input focus state */
+.form-control:focus {
+    border-color: #0056b3;
+    background-color: #e7f3ff;
+}
+
+/* Checkbox Styling */
+#demo_lecture_attended {
+    transform: scale(1.2);
+    margin-left: 0.5rem;
+}
+
+/* Form Button Styling */
+.btn-primary {
+    font-size: 1.3rem;
+    padding: 0.75rem 2.5rem;
+    background-color: #28a745; /* Green color for the button */
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Align Input Next to Label */
 .col-md-4 {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
     display: flex;
     align-items: center;
-}
-.navbar-brand.center-navbar {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5rem; /* Adjust as needed */
+    margin-bottom: 1.5rem;
 }
 
-.col-12{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Success Message Styling */
+#successMessage {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 6px;
+    border: 2px solid #c3e6cb;
 }
-.g-3{
-   display: flex;
-   flex-direction: column;
-   display: grid;
-   grid-template-columns: auto 1fr;
-   gap: 1rem 2rem;
-   align-items: center;
-   background-color: rgb(99, 97, 97);
-   height: 39rem;
+
+/* Navbar Styling */
+.navbar {
+    background-color: #007bff;
+    padding: 1rem;
 }
-.input-group, .form-control {
-   flex: 2;
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
 }
-#fullname{
-   margin-top: 1.5rem;
+
+.nav-link {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.navbar-toggler {
+    background-color: #fff;
+}
+
+/* Additional Enhancements */
+body {
+    background-color: #f0f4f8f3; /* Light background to make the form stand out */
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+.col-12 {
+    text-align: center;
+}
+
+/* Hover effect for inputs */
+.form-control:hover {
+    background-color: #e7f3ff;
+}
+
+/* Placeholder text */
+::placeholder {
+    color: #888;
 }

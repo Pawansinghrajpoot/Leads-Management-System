@@ -80,6 +80,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+CELERY_BROKER_URL = 'redis://localhost:6379/0' # Using Redis as the broker
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'check-due-calls-every-day': {
+        'task': 'your_app_name.tasks.check_due_calls',
+        'schedule': crontab(hour=8, minute=0),  # Set the time for daily check
+    },
+}
 
 
 # Password validation
@@ -106,7 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'  # Change this to your local timezone
+USE_TZ = True
+
 
 USE_I18N = True
 
@@ -128,3 +139,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'  # This should match the name in your URLconf

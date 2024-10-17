@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Optional CSS -->
+</head>
+<body>
+    <div class="container">
+        <h2>Master Dashboard</h2>
+        <p>Welcome, {{ user.username }}!</p>
+
+        <h3>Employees</h3>
+        <ul>
+            {% for employee in employees %}
+                <li>{{ employee.username }}</li>
+            {% empty %}
+                <li>No employees found.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'logout' %}">Logout</a> <!-- Adjust URL as needed -->
+    </div>
+</body>
+</html>
